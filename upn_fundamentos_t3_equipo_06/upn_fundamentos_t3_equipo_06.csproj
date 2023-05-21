@@ -46,17 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmEnunciadoDos.cs">
+    <Compile Include="Enunciado_2\frmEnunciado2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEnunciadoDos.Designer.cs">
-      <DependentUpon>frmEnunciadoDos.cs</DependentUpon>
+    <Compile Include="Enunciado_2\frmEnunciado2.Designer.cs">
+      <DependentUpon>frmEnunciado2.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmEnunciadoUno.cs">
+    <Compile Include="Enunciado_1\frmEnunciado1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEnunciadoUno.Designer.cs">
-      <DependentUpon>frmEnunciadoUno.cs</DependentUpon>
+    <Compile Include="Enunciado_1\frmEnunciado1.Designer.cs">
+      <DependentUpon>frmEnunciado1.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPrincipal.cs">
       <SubType>Form</SubType>
@@ -66,6 +66,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Enunciado_1\frmEnunciado1.resx">
+      <DependentUpon>frmEnunciado1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </EmbeddedResource>

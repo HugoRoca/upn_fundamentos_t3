@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace upn_fundamentos_t3_equipo_06
 {
-    public partial class frmEnunciadoDos : Form
+    public partial class frmEnunciado1 : Form
     {
-        public frmEnunciadoDos()
+        public frmEnunciado1()
         {
             InitializeComponent();
         }

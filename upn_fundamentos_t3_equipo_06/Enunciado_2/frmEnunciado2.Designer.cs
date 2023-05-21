@@ -1,6 +1,6 @@
 ﻿namespace upn_fundamentos_t3_equipo_06
 {
-    partial class frmEnunciadoDos
+    partial class frmEnunciado2
     {
         /// <summary>
         /// Required designer variable.
