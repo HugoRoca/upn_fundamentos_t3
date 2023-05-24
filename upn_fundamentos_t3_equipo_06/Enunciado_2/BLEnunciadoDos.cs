@@ -5,104 +5,104 @@ namespace upn_fundamentos_t3_equipo_06.Enunciado_2
 {
     public class BLEnunciadoDos
     {
-        private List<double> listaNumeros = new List<double>();
+        private List<double> f_listaNumeros = new List<double>();
 
-        public void AgregarNumero(double numero)
+        public void AgregarNumero(double f_numero)
         {
             try
             {
-                listaNumeros.Add(numero);
+                f_listaNumeros.Add(f_numero);
             }
-            catch (FormatException ex)
+            catch (FormatException f_ex)
             {
-                throw ex;
+                throw f_ex;
             }
         }
 
-        public int BuscarNumero(double numero, int indice)
+        public int BuscarNumero(double f_numero, int f_indice)
         {
             try
             {
-                if (indice >= listaNumeros.Count) return -1;
+                if (f_indice >= f_listaNumeros.Count) return -1;
 
-                if (listaNumeros[indice] == numero) return indice;
+                if (f_listaNumeros[f_indice] == f_numero) return f_indice;
 
-                return BuscarNumero(numero, indice + 1);
+                return BuscarNumero(f_numero, f_indice + 1);
             }
-            catch (IndexOutOfRangeException ex)
+            catch (IndexOutOfRangeException f_ex)
             {
-                throw ex;
+                throw f_ex;
             }
         }
 
-        public List<double> OrdenarAscendenteDescendente(bool ascendente)
+        public List<double> OrdenarAscendenteDescendente(bool f_ascendente)
         {
             try
             {
-                List<double> newListaNumeros = listaNumeros;
-                int n = newListaNumeros.Count;
+                List<double> f_newListaNumeros = f_listaNumeros;
+                int f_n = f_newListaNumeros.Count;
 
-                for (int i = 0; i < n - 1; i++)
+                for (int f_i = 0; f_i < f_n - 1; f_i++)
                 {
-                    for (int j = 0; j < n - 1 - i; j++)
+                    for (int j = 0; j < f_n - 1 - f_i; j++)
                     {
-                        bool intercambiar = false;
+                        bool f_intercambiar = false;
 
-                        if (ascendente)
+                        if (f_ascendente)
                         {
-                            if (newListaNumeros[j] > newListaNumeros[j + 1])
-                                intercambiar = true;
+                            if (f_newListaNumeros[j] > f_newListaNumeros[j + 1])
+                                f_intercambiar = true;
                         }
                         else
                         {
-                            if (newListaNumeros[j] < newListaNumeros[j + 1])
-                                intercambiar = true;
+                            if (f_newListaNumeros[j] < f_newListaNumeros[j + 1])
+                                f_intercambiar = true;
                         }
 
-                        if (intercambiar)
+                        if (f_intercambiar)
                         {
-                            double temp = newListaNumeros[j];
-                            newListaNumeros[j] = newListaNumeros[j + 1];
-                            newListaNumeros[j + 1] = temp;
+                            double f_temp = f_newListaNumeros[j];
+                            f_newListaNumeros[j] = f_newListaNumeros[j + 1];
+                            f_newListaNumeros[j + 1] = f_temp;
                         }
                     }
                 }
 
-                return newListaNumeros;
+                return f_newListaNumeros;
             }
-            catch (IndexOutOfRangeException ex)
+            catch (IndexOutOfRangeException f_ex)
             {
-                throw ex;
+                throw f_ex;
             }
         }
 
-        public bool EliminarNumero(double numero)
+        public bool EliminarNumero(double f_numero)
         {
             try
             {
-                bool encontrado = false;
+                bool f_encontrado = false;
 
-                for (int i = 0; i < listaNumeros.Count; i++)
+                for (int f_i = 0; f_i < f_listaNumeros.Count; f_i++)
                 {
-                    if (listaNumeros[i] == numero)
+                    if (f_listaNumeros[f_i] == f_numero)
                     {
-                        listaNumeros.RemoveAt(i);
-                        encontrado = true;
+                        f_listaNumeros.RemoveAt(f_i);
+                        f_encontrado = true;
                         break;
                     }
                 }
 
-                return encontrado;
+                return f_encontrado;
             }
-            catch (FormatException ex)
+            catch (FormatException f_ex)
             {
-                throw ex;
+                throw f_ex;
             }
         }
 
         public List<double> ObtenerListaNumeros()
         {
-            return listaNumeros;
+            return f_listaNumeros;
         }
     }
 }

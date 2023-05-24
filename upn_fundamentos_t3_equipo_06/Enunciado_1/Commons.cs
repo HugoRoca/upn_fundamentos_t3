@@ -6,19 +6,19 @@ namespace upn_fundamentos_t3_equipo_06.Enunciado_1
     {
         public string GenerarCodigoAleatorio()
         {
-            const string caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            const int longitudCodigo = 8;
+            const string f_caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            const int f_longitudCodigo = 8;
 
-            Random random = new Random();
-            char[] codigoArray = new char[longitudCodigo];
+            Random f_random = new Random();
+            char[] f_codigoArray = new char[f_longitudCodigo];
 
-            for (int i = 0; i < longitudCodigo; i++)
+            for (int i = 0; i < f_longitudCodigo; i++)
             {
-                codigoArray[i] = caracteres[random.Next(caracteres.Length)];
+                f_codigoArray[i] = f_caracteres[f_random.Next(f_caracteres.Length)];
             }
 
-            string codigo = new string(codigoArray);
-            return codigo;
+            string f_codigo = new string(f_codigoArray);
+            return f_codigo;
         }
 
     }

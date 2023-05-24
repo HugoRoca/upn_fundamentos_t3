@@ -7,8 +7,8 @@ namespace upn_fundamentos_t3_equipo_06
 {
     public partial class frmEnunciado1 : Form
     {
-        Commons _commons = new Commons();
-        BLVeterinaria _blveterinaria = new BLVeterinaria();
+        Commons f_commons = new Commons();
+        BLVeterinaria f_blveterinaria = new BLVeterinaria();
 
         public frmEnunciado1()
         {
@@ -35,10 +35,10 @@ namespace upn_fundamentos_t3_equipo_06
         {
             try
             {
-                PersonaModel model = new PersonaModel(txtCodigoDuenio.Text,
+                PersonaModel f_model = new PersonaModel(txtCodigoDuenio.Text,
                     txtNombreDuenio.Text, txtDireccionDuenio.Text, txtTelefonoDuenio.Text);
 
-                _blveterinaria.RegistrarDuenio(model);
+                f_blveterinaria.RegistrarDuenio(f_model);
 
                 CargarListView(0);
 
@@ -49,8 +49,7 @@ namespace upn_fundamentos_t3_equipo_06
             }
             catch (Exception)
             {
-                MessageBox.Show("Ocurrió un error al registrar!", "¡Oh no!",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocurrió un error!", "¡Oh no!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -58,12 +57,12 @@ namespace upn_fundamentos_t3_equipo_06
         {
             try
             {
-                PersonaModel duenio = _blveterinaria.BuscarDuenio(cbxDuenio.Text);
+                PersonaModel f_duenio = f_blveterinaria.BuscarDuenio(cbxDuenio.Text);
 
                 MascotaModel model = new MascotaModel(txtCodigoMascota.Text,
-                    txtNombreMascota.Text, txtEdadMascota.Text, txtRazaMascota.Text, duenio);
+                    txtNombreMascota.Text, txtEdadMascota.Text, txtRazaMascota.Text, f_duenio);
 
-                _blveterinaria.RegistrarMascota(model);
+                f_blveterinaria.RegistrarMascota(model);
 
                 CargarListView(1);
 
@@ -74,8 +73,7 @@ namespace upn_fundamentos_t3_equipo_06
             }
             catch (Exception)
             {
-                MessageBox.Show("Ocurrió un error al registrar!", "¡Oh no!",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocurrió un error!", "¡Oh no!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -83,9 +81,9 @@ namespace upn_fundamentos_t3_equipo_06
         {
             try
             {
-                MascotaModel model = _blveterinaria.BuscarMascota(txtBuscaMascota.Text);
+                MascotaModel f_model = f_blveterinaria.BuscarMascota(txtBuscaMascota.Text);
 
-                if (model == null)
+                if (f_model == null)
                 {
                     MessageBox.Show("Nombre de mascota no existe en base de datos!", "Mensaje",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -95,7 +93,7 @@ namespace upn_fundamentos_t3_equipo_06
                     MessageBox.Show(String.Format("Mascota encontrada:\n" +
                         "- Nombre: {0}\n" +
                         "- Raza: {1}\n" +
-                        "- Dueño: {2}", model.Nombre, model.Raza, model.Duenio.Nombre), "Mensaje",
+                        "- Dueño: {2}", f_model.Nombre, f_model.Raza, f_model.Duenio.Nombre), "Mensaje",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -106,15 +104,15 @@ namespace upn_fundamentos_t3_equipo_06
             }
         }
 
-        void CargarListView(int tipo)
+        void CargarListView(int f_tipo)
         {
-            if (tipo == 0)
+            if (f_tipo == 0)
             {
                 lvDuenios.Items.Clear();
 
-                List<PersonaModel> lista = _blveterinaria.ObtenerDuenios();
+                List<PersonaModel> f_lista = f_blveterinaria.ObtenerDuenios();
 
-                foreach (PersonaModel model in lista)
+                foreach (PersonaModel model in f_lista)
                 {
                     lvDuenios.Items.Add(String.Format("{0} - {1} - {2} - {3}",
                         model.Codigo.ToUpper(), model.Nombre.ToUpper(),
@@ -125,9 +123,9 @@ namespace upn_fundamentos_t3_equipo_06
             {
                 lvMascotas.Items.Clear();
 
-                List<MascotaModel> lista = _blveterinaria.ObtenerMascotas();
+                List<MascotaModel> f_lista = f_blveterinaria.ObtenerMascotas();
 
-                foreach (MascotaModel model in lista)
+                foreach (MascotaModel model in f_lista)
                 {
                     lvMascotas.Items.Add(String.Format("{0} - {1} - {2} - {3} - Dueño: {4}",
                         model.Codigo.ToUpper(), model.Nombre.ToUpper(),
@@ -137,15 +135,15 @@ namespace upn_fundamentos_t3_equipo_06
             }
         }
 
-        void HabilitarDeshabilitarControles(bool value, int tipo)
+        void HabilitarDeshabilitarControles(bool f_value, int f_tipo)
         {
-            if (tipo == 0)
+            if (f_tipo == 0)
             {
-                txtNombreDuenio.Enabled = value;
-                txtDireccionDuenio.Enabled = value;
-                txtTelefonoDuenio.Enabled = value;
-                btnRegistrarDuenio.Enabled = value;
-                btnNuevoDuenio.Text = value ? "Cancelar" : "Nuevo";
+                txtNombreDuenio.Enabled = f_value;
+                txtDireccionDuenio.Enabled = f_value;
+                txtTelefonoDuenio.Enabled = f_value;
+                btnRegistrarDuenio.Enabled = f_value;
+                btnNuevoDuenio.Text = f_value ? "Cancelar" : "Nuevo";
 
                 txtNombreDuenio.Focus();
                 txtCodigoDuenio.Clear();
@@ -153,16 +151,16 @@ namespace upn_fundamentos_t3_equipo_06
                 txtDireccionDuenio.Clear();
                 txtTelefonoDuenio.Clear();
 
-                txtCodigoDuenio.Text = value ? _commons.GenerarCodigoAleatorio() : "";
+                txtCodigoDuenio.Text = f_value ? f_commons.GenerarCodigoAleatorio() : "";
             }
             else
             {
-                txtNombreMascota.Enabled = value;
-                txtEdadMascota.Enabled = value;
-                txtRazaMascota.Enabled = value;
-                cbxDuenio.Enabled = value;
-                btnRegistrarMascota.Enabled = value;
-                btnNuevoMascota.Text = value ? "Cancelar" : "Nuevo";
+                txtNombreMascota.Enabled = f_value;
+                txtEdadMascota.Enabled = f_value;
+                txtRazaMascota.Enabled = f_value;
+                cbxDuenio.Enabled = f_value;
+                btnRegistrarMascota.Enabled = f_value;
+                btnNuevoMascota.Text = f_value ? "Cancelar" : "Nuevo";
 
                 txtNombreMascota.Focus();
                 txtCodigoMascota.Clear();
@@ -171,20 +169,20 @@ namespace upn_fundamentos_t3_equipo_06
                 txtEdadMascota.Clear();
                 cbxDuenio.SelectedIndex = -1;
 
-                txtCodigoMascota.Text = value ? _commons.GenerarCodigoAleatorio() : "";
+                txtCodigoMascota.Text = f_value ? f_commons.GenerarCodigoAleatorio() : "";
 
 
-                if (value)
+                if (f_value)
                 {
                     cbxDuenio.Items.Clear();
 
-                    List<PersonaModel> listaDuenios = _blveterinaria.ObtenerDuenios();
+                    List<PersonaModel> f_listaDuenios = f_blveterinaria.ObtenerDuenios();
 
                     cbxDuenio.Items.Add("-- Seleccione --");
 
-                    for (int i = 0; i < listaDuenios.Count; i++)
+                    for (int i = 0; i < f_listaDuenios.Count; i++)
                     {
-                        cbxDuenio.Items.Add(listaDuenios[i].Nombre);
+                        cbxDuenio.Items.Add(f_listaDuenios[i].Nombre);
                     }
 
                     cbxDuenio.SelectedIndex = 0;

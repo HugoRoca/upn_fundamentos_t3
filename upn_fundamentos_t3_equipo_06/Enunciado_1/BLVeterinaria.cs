@@ -1,56 +1,85 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace upn_fundamentos_t3_equipo_06.Enunciado_1
 {
     public class BLVeterinaria
     {
-        protected List<PersonaModel> listaDuenios = new List<PersonaModel>();
-        protected List<MascotaModel> listaMascotas = new List<MascotaModel>();
+        protected List<PersonaModel> f_listaDuenios = new List<PersonaModel>();
+        protected List<MascotaModel> f_listaMascotas = new List<MascotaModel>();
 
         public List<PersonaModel> ObtenerDuenios()
         {
-            return listaDuenios;
+            return f_listaDuenios;
         }
 
         public List<MascotaModel> ObtenerMascotas()
         {
-            return listaMascotas;
+            return f_listaMascotas;
         }
 
-        public MascotaModel BuscarMascota(string nombreMascota)
+        public MascotaModel BuscarMascota(string f_nombreMascota)
         {
-            for (int i = 0; i < listaMascotas.Count; i++)
+            try
             {
-                if (listaMascotas[i].Nombre == nombreMascota)
+                for (int f_i = 0; f_i < f_listaMascotas.Count; f_i++)
                 {
-                    return listaMascotas[i];
+                    if (f_listaMascotas[f_i].Nombre == f_nombreMascota)
+                    {
+                        return f_listaMascotas[f_i];
+                    }
                 }
+
+                return null;
             }
-
-            return null;
-        }
-
-        public PersonaModel BuscarDuenio(string nombreDuenio)
-        {
-            for (int i = 0; i < listaDuenios.Count; i++)
+            catch (IndexOutOfRangeException f_ex)
             {
-                if (listaDuenios[i].Nombre == nombreDuenio)
-                {
-                    return listaDuenios[i];
-                }
+                throw f_ex;
             }
-
-            return null;
         }
 
-        public void RegistrarDuenio(PersonaModel model)
+        public PersonaModel BuscarDuenio(string f_nombreDuenio)
         {
-            listaDuenios.Add(model);
+            try
+            {
+                for (int f_i = 0; f_i < f_listaDuenios.Count; f_i++)
+                {
+                    if (f_listaDuenios[f_i].Nombre == f_nombreDuenio)
+                    {
+                        return f_listaDuenios[f_i];
+                    }
+                }
+
+                return null;
+            }
+            catch (IndexOutOfRangeException f_ex)
+            {
+                throw f_ex;
+            }
         }
 
-        public void RegistrarMascota(MascotaModel model)
+        public void RegistrarDuenio(PersonaModel f_model)
         {
-            listaMascotas.Add(model);
+            try
+            {
+                f_listaDuenios.Add(f_model);
+            }
+            catch (ArgumentException f_ex)
+            {
+                throw f_ex;
+            }
+        }
+
+        public void RegistrarMascota(MascotaModel f_model)
+        {
+            try
+            {
+                f_listaMascotas.Add(f_model);
+            }
+            catch (ArgumentException f_ex)
+            {
+                throw f_ex;
+            }
         }
     }
 }
