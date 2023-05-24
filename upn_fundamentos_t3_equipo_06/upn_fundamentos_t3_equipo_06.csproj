@@ -50,10 +50,11 @@
     <Compile Include="Enunciado_1\BLVeterinaria.cs" />
     <Compile Include="Enunciado_1\MascotaModel.cs" />
     <Compile Include="Enunciado_1\PersonaModel.cs" />
-    <Compile Include="Enunciado_2\frmEnunciado2.cs">
+    <Compile Include="Enunciado_2\BLEnunciadoDos.cs" />
+    <Compile Include="frmEnunciado2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Enunciado_2\frmEnunciado2.Designer.cs">
+    <Compile Include="frmEnunciado2.Designer.cs">
       <DependentUpon>frmEnunciado2.cs</DependentUpon>
     </Compile>
     <Compile Include="frmEnunciado1.cs">
@@ -73,7 +74,7 @@
     <EmbeddedResource Include="frmEnunciado1.resx">
       <DependentUpon>frmEnunciado1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Enunciado_2\frmEnunciado2.resx">
+    <EmbeddedResource Include="frmEnunciado2.resx">
       <DependentUpon>frmEnunciado2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">
