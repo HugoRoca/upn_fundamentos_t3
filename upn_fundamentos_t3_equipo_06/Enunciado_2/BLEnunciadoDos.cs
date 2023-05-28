@@ -39,36 +39,11 @@ namespace upn_fundamentos_t3_equipo_06.Enunciado_2
         {
             try
             {
-                List<double> f_newListaNumeros = f_listaNumeros;
-                int f_n = f_newListaNumeros.Count;
+                f_listaNumeros.Sort();
 
-                for (int f_i = 0; f_i < f_n - 1; f_i++)
-                {
-                    for (int j = 0; j < f_n - 1 - f_i; j++)
-                    {
-                        bool f_intercambiar = false;
+                if (!f_ascendente) f_listaNumeros.Reverse();
 
-                        if (f_ascendente)
-                        {
-                            if (f_newListaNumeros[j] > f_newListaNumeros[j + 1])
-                                f_intercambiar = true;
-                        }
-                        else
-                        {
-                            if (f_newListaNumeros[j] < f_newListaNumeros[j + 1])
-                                f_intercambiar = true;
-                        }
-
-                        if (f_intercambiar)
-                        {
-                            double f_temp = f_newListaNumeros[j];
-                            f_newListaNumeros[j] = f_newListaNumeros[j + 1];
-                            f_newListaNumeros[j + 1] = f_temp;
-                        }
-                    }
-                }
-
-                return f_newListaNumeros;
+                return f_listaNumeros;
             }
             catch (IndexOutOfRangeException f_ex)
             {

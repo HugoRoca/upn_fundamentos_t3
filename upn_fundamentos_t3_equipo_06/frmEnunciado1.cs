@@ -19,6 +19,8 @@ namespace upn_fundamentos_t3_equipo_06
         {
             HabilitarDeshabilitarControles(false, 0);
             HabilitarDeshabilitarControles(false, 1);
+
+            cbxDuenio.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void btnNuevoDuenio_Click(object sender, EventArgs e)
@@ -35,6 +37,8 @@ namespace upn_fundamentos_t3_equipo_06
         {
             try
             {
+                if (!ValidarDatosRegistro(false)) return;
+
                 PersonaModel f_model = new PersonaModel(txtCodigoDuenio.Text,
                     txtNombreDuenio.Text, txtDireccionDuenio.Text, txtTelefonoDuenio.Text);
 
@@ -57,6 +61,8 @@ namespace upn_fundamentos_t3_equipo_06
         {
             try
             {
+                if (!ValidarDatosRegistro(true)) return;
+
                 PersonaModel f_duenio = f_blveterinaria.BuscarDuenio(cbxDuenio.Text);
 
                 MascotaModel model = new MascotaModel(txtCodigoMascota.Text,
@@ -104,7 +110,37 @@ namespace upn_fundamentos_t3_equipo_06
             }
         }
 
-        void CargarListView(int f_tipo)
+        private void txtNombreDuenio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidarSoloLetras(sender, e);
+        }
+
+        private void txtTelefonoDuenio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidarSoloNumeros(sender, e);
+        }
+
+        private void txtNombreMascota_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidarSoloLetras(sender, e);
+        }
+
+        private void txtRazaMascota_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidarSoloLetras(sender, e);
+        }
+
+        private void txtEdadMascota_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidarSoloNumerosYLetras(sender, e);
+        }
+
+        private void txtBuscaMascota_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidarSoloLetras(sender, e);
+        }
+
+        private void CargarListView(int f_tipo)
         {
             if (f_tipo == 0)
             {
@@ -129,13 +165,13 @@ namespace upn_fundamentos_t3_equipo_06
                 {
                     lvMascotas.Items.Add(String.Format("{0} - {1} - {2} - {3} - Dueño: {4}",
                         model.Codigo.ToUpper(), model.Nombre.ToUpper(),
-                        model.Edad.ToUpper(), model.Raza.ToUpper(), 
+                        model.Edad.ToUpper(), model.Raza.ToUpper(),
                         model.Duenio.Nombre.ToUpper()));
                 }
             }
         }
 
-        void HabilitarDeshabilitarControles(bool f_value, int f_tipo)
+        private void HabilitarDeshabilitarControles(bool f_value, int f_tipo)
         {
             if (f_tipo == 0)
             {
@@ -189,5 +225,53 @@ namespace upn_fundamentos_t3_equipo_06
                 }
             }
         }
+
+        private void ValidarSoloLetras(object sender, KeyPressEventArgs e)
+        {
+            char tecla = e.KeyChar;
+
+            if (!Char.IsLetter(tecla) && !Char.IsControl(tecla) && tecla != ' ') e.Handled = true;
+        }
+
+        private void ValidarSoloNumeros(object sender, KeyPressEventArgs e)
+        {
+            char tecla = e.KeyChar;
+
+            if (!Char.IsDigit(tecla) && !Char.IsControl(tecla))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void ValidarSoloNumerosYLetras(object sender, KeyPressEventArgs e)
+        {
+            char tecla = e.KeyChar;
+
+            if (!Char.IsLetterOrDigit(tecla) && !Char.IsControl(tecla) && tecla != ' ')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private bool ValidarDatosRegistro(bool f_mascotas)
+        {
+            bool f_validacion = true;
+
+            if (f_mascotas && (cbxDuenio.SelectedIndex == 0 || txtNombreMascota.Text == "" ||
+                txtEdadMascota.Text == "" || txtRazaMascota.Text == ""))
+            {
+                f_validacion = false;
+            }
+
+            if (!f_mascotas && (txtNombreDuenio.Text == "" || txtDireccionDuenio.Text == "" || txtTelefonoDuenio.Text == ""))
+            {
+                f_validacion = false;
+            }
+
+            if (!f_validacion) MessageBox.Show("Faltan completar datos, por favor revisar!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            return f_validacion;
+        }
     }
+
 }

@@ -23,6 +23,13 @@ namespace upn_fundamentos_t3_equipo_06
         {
             try
             {
+                if (txtNumeroIngresar.Text == "")
+                {
+                    MessageBox.Show("Debe ingredar un número", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtNumeroIngresar.Focus();
+                    return;
+                }
+
                 _blEnunciado2.AgregarNumero(double.Parse(txtNumeroIngresar.Text));
                 txtNumeroIngresar.Clear();
                 txtNumeroIngresar.Focus();
@@ -41,12 +48,7 @@ namespace upn_fundamentos_t3_equipo_06
             {
                 List<double> lista = _blEnunciado2.OrdenarAscendenteDescendente(true);
 
-                lvLista.Items.Clear();
-
-                foreach (var item in lista)
-                {
-                    lvLista.Items.Add(item.ToString());
-                }
+                CargarListView(lista);
             }
             catch (Exception)
             {
@@ -60,12 +62,7 @@ namespace upn_fundamentos_t3_equipo_06
             {
                 List<double> lista = _blEnunciado2.OrdenarAscendenteDescendente(false);
 
-                lvLista.Items.Clear();
-
-                foreach (var item in lista)
-                {
-                    lvLista.Items.Add(item.ToString());
-                }
+                CargarListView(lista);
             }
             catch (Exception)
             {
@@ -77,16 +74,21 @@ namespace upn_fundamentos_t3_equipo_06
         {
             try
             {
-                bool esEliminado = _blEnunciado2.EliminarNumero(double.Parse(txtNumeroEliminar.Text));
-
-                if (esEliminado) MessageBox.Show("Número eliminado!");
-                else
+                if (lvLista.SelectedItems.Count < 0)
                 {
-                    MessageBox.Show("No se encontró el número!");
+                    MessageBox.Show("Debe ingresar un número", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
 
-                txtNumeroEliminar.Clear();
-                txtNumeroEliminar.Focus();
+                ListViewItem selectedItem = lvLista.SelectedItems[0];
+                string numero = selectedItem.Text;
+                bool esEliminado = _blEnunciado2.EliminarNumero(double.Parse(numero));
+
+                if (esEliminado) MessageBox.Show("Número eliminado!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                {
+                    MessageBox.Show("No se encontró el número!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
 
                 CargarListView();
             }
@@ -109,27 +111,31 @@ namespace upn_fundamentos_t3_equipo_06
         private void validarNumerosDecimales(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
-                (e.KeyChar != '.') && (e.KeyChar != ',') && (e.KeyChar != '-'))
+                (e.KeyChar != '.') && (e.KeyChar != '-'))
             {
                 e.Handled = true;
             }
 
-            if (((e.KeyChar == '.') || (e.KeyChar == ',') || (e.KeyChar == '-')) && 
-                ((sender as TextBox).Text.IndexOf('.') > -1))
+            if (e.KeyChar == '.' && (sender as TextBox).Text.IndexOf('.') > -1)
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == '-' && (sender as TextBox).Text.IndexOf('-') > -1)
             {
                 e.Handled = true;
             }
         }
 
-        private void CargarListView()
+        private void CargarListView(List<double> f_listaNumeros = null)
         {
             lvLista.Items.Clear();
 
-            List<double> lista = _blEnunciado2.ObtenerListaNumeros();
+            List<double> lista = f_listaNumeros ?? _blEnunciado2.ObtenerListaNumeros();
 
-            foreach (var item in lista)
+            foreach (var f_item in lista)
             {
-                lvLista.Items.Add(item.ToString());
+                lvLista.Items.Add(f_item.ToString());
             }
         }
     }

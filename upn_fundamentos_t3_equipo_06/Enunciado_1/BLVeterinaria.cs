@@ -24,7 +24,7 @@ namespace upn_fundamentos_t3_equipo_06.Enunciado_1
             {
                 for (int f_i = 0; f_i < f_listaMascotas.Count; f_i++)
                 {
-                    if (f_listaMascotas[f_i].Nombre == f_nombreMascota)
+                    if (f_listaMascotas[f_i].Nombre.ToLower() == f_nombreMascota.ToLower())
                     {
                         return f_listaMascotas[f_i];
                     }

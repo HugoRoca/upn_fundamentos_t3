@@ -40,7 +40,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtNumeroEliminar = new System.Windows.Forms.TextBox();
+            this.chNumeros = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -48,14 +48,17 @@
             // 
             // lvLista
             // 
+            this.lvLista.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.chNumeros});
             this.lvLista.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvLista.FullRowSelect = true;
             this.lvLista.HideSelection = false;
             this.lvLista.Location = new System.Drawing.Point(12, 12);
             this.lvLista.Name = "lvLista";
             this.lvLista.Size = new System.Drawing.Size(196, 352);
             this.lvLista.TabIndex = 0;
             this.lvLista.UseCompatibleStateImageBehavior = false;
-            this.lvLista.View = System.Windows.Forms.View.List;
+            this.lvLista.View = System.Windows.Forms.View.Details;
             // 
             // txtNumeroIngresar
             // 
@@ -147,7 +150,6 @@
             // 
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.btnEliminar);
-            this.groupBox3.Controls.Add(this.txtNumeroEliminar);
             this.groupBox3.Location = new System.Drawing.Point(214, 264);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(210, 100);
@@ -158,21 +160,16 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 22);
+            this.label2.Location = new System.Drawing.Point(6, 16);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 18);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Ingresar número:";
+            this.label2.Size = new System.Drawing.Size(185, 26);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Para eliminar, seleccione un elemento\r\nde la lista.";
             // 
-            // txtNumeroEliminar
+            // chNumeros
             // 
-            this.txtNumeroEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNumeroEliminar.Location = new System.Drawing.Point(132, 19);
-            this.txtNumeroEliminar.Name = "txtNumeroEliminar";
-            this.txtNumeroEliminar.Size = new System.Drawing.Size(72, 24);
-            this.txtNumeroEliminar.TabIndex = 4;
-            this.txtNumeroEliminar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumeroEliminar_KeyPress);
+            this.chNumeros.Text = "Números";
+            this.chNumeros.Width = 156;
             // 
             // frmEnunciado2
             // 
@@ -210,6 +207,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtNumeroEliminar;
+        private System.Windows.Forms.ColumnHeader chNumeros;
     }
 }

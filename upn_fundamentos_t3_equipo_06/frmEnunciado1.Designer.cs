@@ -167,9 +167,11 @@
             // txtNombreDuenio
             // 
             this.txtNombreDuenio.Location = new System.Drawing.Point(98, 46);
+            this.txtNombreDuenio.MaxLength = 30;
             this.txtNombreDuenio.Name = "txtNombreDuenio";
             this.txtNombreDuenio.Size = new System.Drawing.Size(228, 20);
             this.txtNombreDuenio.TabIndex = 20;
+            this.txtNombreDuenio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreDuenio_KeyPress);
             // 
             // txtCodigoDuenio
             // 
@@ -201,6 +203,7 @@
             // txtDireccionDuenio
             // 
             this.txtDireccionDuenio.Location = new System.Drawing.Point(98, 72);
+            this.txtDireccionDuenio.MaxLength = 30;
             this.txtDireccionDuenio.Name = "txtDireccionDuenio";
             this.txtDireccionDuenio.Size = new System.Drawing.Size(228, 20);
             this.txtDireccionDuenio.TabIndex = 21;
@@ -208,9 +211,11 @@
             // txtTelefonoDuenio
             // 
             this.txtTelefonoDuenio.Location = new System.Drawing.Point(98, 98);
+            this.txtTelefonoDuenio.MaxLength = 9;
             this.txtTelefonoDuenio.Name = "txtTelefonoDuenio";
             this.txtTelefonoDuenio.Size = new System.Drawing.Size(228, 20);
             this.txtTelefonoDuenio.TabIndex = 22;
+            this.txtTelefonoDuenio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefonoDuenio_KeyPress);
             // 
             // label3
             // 
@@ -288,9 +293,11 @@
             // txtBuscaMascota
             // 
             this.txtBuscaMascota.Location = new System.Drawing.Point(98, 19);
+            this.txtBuscaMascota.MaxLength = 30;
             this.txtBuscaMascota.Name = "txtBuscaMascota";
             this.txtBuscaMascota.Size = new System.Drawing.Size(217, 20);
             this.txtBuscaMascota.TabIndex = 28;
+            this.txtBuscaMascota.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscaMascota_KeyPress);
             // 
             // groupBox3
             // 
@@ -362,9 +369,11 @@
             // txtNombreMascota
             // 
             this.txtNombreMascota.Location = new System.Drawing.Point(98, 46);
+            this.txtNombreMascota.MaxLength = 30;
             this.txtNombreMascota.Name = "txtNombreMascota";
             this.txtNombreMascota.Size = new System.Drawing.Size(217, 20);
             this.txtNombreMascota.TabIndex = 20;
+            this.txtNombreMascota.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreMascota_KeyPress);
             // 
             // txtCodigoMascota
             // 
@@ -396,16 +405,20 @@
             // txtEdadMascota
             // 
             this.txtEdadMascota.Location = new System.Drawing.Point(98, 72);
+            this.txtEdadMascota.MaxLength = 10;
             this.txtEdadMascota.Name = "txtEdadMascota";
             this.txtEdadMascota.Size = new System.Drawing.Size(100, 20);
             this.txtEdadMascota.TabIndex = 21;
+            this.txtEdadMascota.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEdadMascota_KeyPress);
             // 
             // txtRazaMascota
             // 
             this.txtRazaMascota.Location = new System.Drawing.Point(98, 98);
+            this.txtRazaMascota.MaxLength = 20;
             this.txtRazaMascota.Name = "txtRazaMascota";
             this.txtRazaMascota.Size = new System.Drawing.Size(100, 20);
             this.txtRazaMascota.TabIndex = 22;
+            this.txtRazaMascota.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRazaMascota_KeyPress);
             // 
             // label8
             // 
